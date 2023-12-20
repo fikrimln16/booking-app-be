@@ -136,7 +136,6 @@ app.post("/approve-equipment", (req, res) => {
 app.post("/approve-room", (req, res) => {
   const { nama, email, phoneNumber } = req.body;
 
-  // Find the request based on nama, nim, and date
   const requestIndex = bookingData.findIndex(
     (req) => req.name === nama && req.email === email && req.phoneNumber === phoneNumber
   );
@@ -145,10 +144,8 @@ app.post("/approve-room", (req, res) => {
     return res.status(404).json({ error: "Request not found" });
   }
 
-  // Update the status to "Approved"
   bookingData[requestIndex].status = "Approved";
 
-  // Respond with the updated request
   res.json({ success: true, request: bookingData[requestIndex] });
 });
 
